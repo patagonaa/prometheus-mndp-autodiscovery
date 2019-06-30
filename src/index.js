@@ -9,7 +9,8 @@ function updateFile() {
 	let json = Object.values(nodes).map(node => {
 		return {
 			labels: {
-				macAddress: node.macAddress
+				macAddress: node.macAddress,
+				identity: node.identity == "MikroTik" ? node.macAddress : node.identity
 			},
 			targets: [node.ipAddress]
 		}
