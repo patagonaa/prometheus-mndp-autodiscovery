@@ -1,0 +1,27 @@
+{
+  "name": "prometheus-mndp-autodiscovery",
+  "version": "1.0.0",
+  "description": "Prometheus autodiscovery for Mikrotik devices",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patagonaa/prometheus-mndp-autodiscovery.git"
+  },
+  "keywords": [
+    "mndp",
+    "mikrotik",
+    "prometheus"
+  ],
+  "author": "patagona",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patagonaa/prometheus-mndp-autodiscovery/issues"
+  },
+  "homepage": "https://github.com/patagonaa/prometheus-mndp-autodiscovery#readme",
+  "dependencies": {
+    "node-mndp": "0.0.2"
+  }
+}
