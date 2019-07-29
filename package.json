@@ -11,8 +11,6 @@
     "url": "git+https://github.com/patagonaa/prometheus-mndp-autodiscovery.git"
   },
   "keywords": [
-    "mndp",
-    "mikrotik",
     "prometheus"
   ],
   "author": "patagona",
@@ -22,6 +20,6 @@
   },
   "homepage": "https://github.com/patagonaa/prometheus-mndp-autodiscovery#readme",
   "dependencies": {
-    "node-mndp": "0.0.2"
+    "node-mndp": "0.0.3"
   }
 }
