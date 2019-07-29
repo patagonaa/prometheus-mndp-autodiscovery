@@ -23,11 +23,11 @@ function cleanUp() {
 	let time = Date.now();
 	let maxAgeTime = time - (MAX_AGE * 1000);
 
-	for (let ip in nodes) {
-		let node = nodes[ip];
+	for (let mac in nodes) {
+		let node = nodes[mac];
 		if (node.time < maxAgeTime) {
-			console.info("Removing ", ip)
-			delete nodes[ip];
+			console.info("Removing ", mac)
+			delete nodes[mac];
 		}
 	}
 	updateFile();
@@ -40,7 +40,7 @@ let discovery = new mndp.NodeMndp({
 
 discovery.on('deviceFound', (device) => {
 	console.info('Got discovery packet: ', device);
-	nodes[device.ipAddress] = { ...device, time: Date.now() };
+	nodes[device.macAddress] = { ...device, time: Date.now() };
 	updateFile();
 })
 
