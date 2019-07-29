@@ -23,17 +23,14 @@ function cleanUp() {
 	let time = Date.now();
 	let maxAgeTime = time - (MAX_AGE * 1000);
 
-	let needsUpdate = false;
 	for (let ip in nodes) {
 		let node = nodes[ip];
 		if (node.time < maxAgeTime) {
 			console.info("Removing ", ip)
 			delete nodes[ip];
-			needsUpdate = true;
 		}
 	}
-	if (needsUpdate)
-		updateFile();
+	updateFile();
 }
 
 
