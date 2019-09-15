@@ -16,7 +16,7 @@ function updateFile() {
 		}
 	});
 	console.info("Exporting ", json);
-	fs.writeFileSync(TARGET_FILE, JSON.stringify(json, null, 2));
+	fs.writeFileSync(TARGET_FILE, JSON.stringify(json, null, 2) + "\n");
 }
 
 function cleanUp() {
