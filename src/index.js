@@ -1,11 +1,11 @@
-const fs = require('fs');
+const writeFileAtomic = require('write-file-atomic');
 const mndp = require('node-mndp');
 const TARGET_FILE = process.env.TARGET_FILE || "/file_sd/targets.json";
 const MAX_AGE = parseInt(process.env.MAX_AGE || "300"); // seconds
 
 let nodes = {};
 
-function updateFile() {
+async function updateFile() {
 	let json = Object.values(nodes).map(node => {
 		return {
 			labels: {
@@ -16,7 +16,11 @@ function updateFile() {
 		}
 	});
 	console.info("Exporting ", json);
-	fs.writeFileSync(TARGET_FILE, JSON.stringify(json, null, 2) + "\n");
+	try {
+		await writeFileAtomic(TARGET_FILE, JSON.stringify(json, null, 2) + "\n");
+	} catch (e) {
+		console.error("Error while exporting:", e);
+	}
 }
 
 function cleanUp() {
