@@ -19,7 +19,7 @@ services:
     build: ./prometheus-mndp-autodiscovery # path of git repo
     volumes:
       - "mikrotik-discovery:/file_sd/"
-    network_mode: host
+    network_mode: host # required for receiving UDP broadcasts
 
 volumes:
   prometheus-data:
@@ -28,7 +28,7 @@ volumes:
 ### prometheus.yml
 ```yaml
 global:
-  # ...
+  # [...]
 
 scrape_configs:
   - job_name: 'snmp'
@@ -43,6 +43,8 @@ scrape_configs:
         replacement: '$1'
       - source_labels: [__address__]
         target_label: __param_target
+      - source_labels: [__address__]
+        target_label: target
       - target_label: __address__
         replacement: '[ip or host where snmp-exporter is running]:9116'
 ```
