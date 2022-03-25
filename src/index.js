@@ -15,7 +15,7 @@ async function updateFile() {
 			targets: [node.ipAddress]
 		}
 	});
-	console.info("Exporting ", json);
+	console.info("Exporting ", JSON.stringify(json));
 	try {
 		await writeFileAtomic(TARGET_FILE, JSON.stringify(json, null, 2) + "\n");
 	} catch (e) {
@@ -37,13 +37,12 @@ function cleanUp() {
 	updateFile();
 }
 
-
 let discovery = new mndp.NodeMndp({
 	port: 5678
 });
 
 discovery.on('deviceFound', (device) => {
-	console.info('Got discovery packet: ', device);
+	console.info('Got discovery packet: ', JSON.stringify(device));
 	nodes[device.macAddress] = { ...device, time: Date.now() };
 	updateFile();
 })
@@ -51,4 +50,4 @@ discovery.on('deviceFound', (device) => {
 discovery.start();
 
 setInterval(cleanUp, 60 * 1000);
-console.info('started.', { TARGET_FILE: TARGET_FILE, MAX_AGE: MAX_AGE });
+console.info('started.', JSON.stringify({ TARGET_FILE: TARGET_FILE, MAX_AGE: MAX_AGE }));
